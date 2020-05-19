@@ -1,0 +1,86 @@
+import React from 'react';
+// nodejs library that concatenates classes
+import classNames from 'classnames';
+// @material-ui/core components
+import { makeStyles } from '@material-ui/core/styles';
+
+// @material-ui/icons
+
+// core components
+import Header from 'components/Header/Header.js';
+import Footer from 'components/Footer/Footer.js';
+import GridContainer from 'components/Grid/GridContainer.js';
+import GridItem from 'components/Grid/GridItem.js';
+import Button from 'components/CustomButtons/Button.js';
+import HeaderLinks from 'components/Header/HeaderLinks.js';
+import Parallax from 'components/Parallax/Parallax.js';
+
+import styles from 'assets/jss/material-kit-react/views/landingPage.js';
+
+// Sections for this page
+import ProductSection from './Sections/ProductSection.js';
+import TeamSection from './Sections/TeamSection.js';
+import WorkSection from './Sections/WorkSection.js';
+
+// Kakao MAP
+import { kakaoMap } from 'react-kakao-maps';
+
+const dashboardRoutes = [];
+
+const useStyles = makeStyles(styles);
+
+export default function LandingPage(props) {
+  const classes = useStyles();
+  const { ...rest } = props;
+  return (
+    <div>
+      <Header
+        color='transparent'
+        routes={dashboardRoutes}
+        brand='Song PAY'
+        rightLinks={<HeaderLinks />}
+        fixed
+        changeColorOnScroll={{
+          height: 400,
+          color: 'white',
+        }}
+        {...rest}
+      />
+      <Parallax filter image={require('assets/img/landing.jpg')}>
+        <div className={classes.container}>
+          <GridContainer>
+            <GridItem xs={12} sm={12} md={6}>
+              <h1 className={classes.title}>Song PAY</h1>
+              <hr />
+              <h3>
+                {"'"}쏭페이{"'"}는
+              </h3>
+              <h4>
+                QR코드를 통한 코인노래방 결제 서비스로,
+                <br />
+                일명 {"'"}코노{"'"}문화를 선도하고자 합니다.
+              </h4>
+              <br />
+            </GridItem>
+          </GridContainer>
+        </div>
+      </Parallax>
+      <div className={classNames(classes.main, classes.mainRaised)}>
+        <div className={classes.container}>
+          <ProductSection />
+          {/* <kakaoMap
+            apiUrl={process.env.REACT_APP_KAKAO_MAP_KEY}
+            width='500px'
+            height='700px'
+            level={2}
+            lat={37.490826}
+            lng={127.03342}
+          ></kakaoMap> */}
+          <TeamSection />
+          <WorkSection />
+        </div>
+      </div>
+      <Footer />
+    </div>
+  );
+}
