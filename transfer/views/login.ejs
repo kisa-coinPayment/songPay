@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+        <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+                <title>SongPay</title>
+            
+                <!-- Google font file. If you want you can change. -->
+                <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,900" rel="stylesheet">
+            
+                <!-- Fontawesome font file css -->
+                <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+            
+                <!-- Template global css file. Requared all pages -->
+                <link rel="stylesheet" type="text/css" href="css/global.style.css">
+            </head>
+<body>
+            <div>
+                <div>
+                    <input type="email" id="visitorEmail" name="aaa" class="form-element" placeholder="Username or Email">
+                </div>
+                <div>
+                    <input type="password" id="visitorPassword" name="aaa" class="form-element" placeholder="Password">
+                </div>
+            </div>
+            <button type="button" id="loginBtn" class="button circle block orange">Login</a>
+
+                <script src="js/jquery-3.2.1.min.js"></script>
+
+                <!-- Template global script file. requared all pages -->
+                <script src="js/global.script.js"></script>
+
+        <script>
+                $("#loginBtn").click(function(){
+                         $.ajax({
+                                url:'http://localhost:3000/login',
+                                type : 'POST',
+                                data : {
+                                    visitorEmail : $("#visitorEmail").val(),
+                                    visitorPassword : $("#visitorPassword").val(),
+                                },
+                                success:function(data){
+                                    if(data =='2'){
+                                        alert('password is not correct')
+                                        window.location.href='/login';
+                                    }
+                                    else if(data =='3'){
+                                        alert('there is no email');
+                                    }
+                                    else{
+                                        sessionStorage.setItem('jwtToken', data);
+                                        window.location.href='/withdraw'
+                                    }
+                                }
+                            })
+                        })
+            </script>
+</body>
+</html>

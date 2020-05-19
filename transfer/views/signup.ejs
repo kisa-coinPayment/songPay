@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+        <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+                <title>SongPay</title>
+            
+                <!-- Google font file. If you want you can change. -->
+                <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,900" rel="stylesheet">
+            
+                <!-- Fontawesome font file css -->
+                <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+            
+                <!-- Template global css file. Requared all pages -->
+                <link rel="stylesheet" type="text/css" href="css/global.style.css">
+            </head>
+    <body>
+            <div class="form-row-group with-icons">
+                   
+                    <div class="form-row no-padding"></div>
+                        <i class="fa fa-user"></i>
+                        <input type="text" id="visitorName" class="form-element" placeholder="UserName" value="김민지">
+                    </div>
+                    <div class="form-row no-padding">
+                            <i class="fa fa-envelope"></i>
+                            <input type="email" id="visitorEmail" class="form-element" placeholder="Email" value="kimminji728@naver.com">
+                        </div>
+                    <div class="form-row no-padding">
+                        <i class="fa fa-lock"></i>
+                        <input type="password" id="visitorPassword" class="form-element" placeholder="Password" value="1234">
+                    </div>
+                    <div class="form-row no-padding">
+                        <i class="fa fa-user"></i>
+                        <input type="text" id="AccessToken" class="form-element" placeholder="accessToken" value="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxMTAwMDM0ODU1Iiwic2NvcGUiOlsiaW5xdWlyeSIsImxvZ2luIiwidHJhbnNmZXIiXSwiaXNzIjoiaHR0cHM6Ly93d3cub3BlbmJhbmtpbmcub3Iua3IiLCJleHAiOjE1OTcxMzExMjQsImp0aSI6ImE2ZTQ3YTE4LTNmNDYtNDUwNS05ZTY4LWUzNjM0NWM3NGVkNiJ9.mG7SJK8xwm_VUB9OSNYkJDx0yOZrx5gZaxzppHBSVg4">
+                    </div>
+                    <div class="form-row no-padding">
+                        <i class="fa fa-user"></i>
+                        <input type="text" id="RefreshToken" class="form-element" placeholder="refreshToken" value="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxMTAwMDM0ODU1Iiwic2NvcGUiOlsiaW5xdWlyeSIsImxvZ2luIiwidHJhbnNmZXIiXSwiaXNzIjoiaHR0cHM6Ly93d3cub3BlbmJhbmtpbmcub3Iua3IiLCJleHAiOjE1OTc5OTUxMjQsImp0aSI6ImRkNzlhNDA1LTIwZTMtNDY2Zi05ZjQ2LThlZDU3ZDA1N2JmMyJ9.s3N8Ha5zL2ujopBpOh9oDRfUBfn6CqHtYQlXDd64NTw">
+                    </div>
+                    <div class="form-row no-padding">
+                        <i class="fa fa-user"></i>
+                        <input type="text" id="userSeqNo" class="form-element" placeholder="userseqno" value="1100034855">
+                    </div>
+                </div>
+                <div>
+                <div class="form-row">
+						<button id="authBtn" class="button circle block blue mb-15"> <i class="fa fa-user"></i> 인증받기</button>
+					</div>
+                <div class="form-row">
+						<button id="signupBtn" class="button circle block orange">Sign Up</button>
+                    </div>
+                </div>
+
+                <!-- JQuery library file. requared all pages -->
+	<script src="js/jquery-3.2.1.min.js"></script>
+
+	<!-- Template global script file. requared all pages -->
+	<script src="js/global.script.js"></script>
+            <script>
+                    $("#authBtn").click(function(){
+                        var tmpWindow = window.open('about:blank')
+                        tmpWindow.location = "https://testapi.openbanking.or.kr/oauth/2.0/authorize?response_type=code&client_id=VjmBN2T6n1yY5xWny2lqJdZcMsnMcvJINSVsPp1s&redirect_uri=http://localhost:3000/authResult&scope=login inquiry transfer&state=12345678901234567890123456789012&auth_type=0"
+                    })
+                    $("#signupBtn").click(function(){
+                        var visitorEmail = $("#visitorEmail").val();
+                        var visitorName = $("#visitorName").val();
+                        var visitorPassword = $("#visitorPassword").val();
+                        var AccessToken = $("#AccessToken").val();
+                        var RefreshToken = $("#RefreshToken").val();
+                        var userSeqNo = $("#userSeqNo").val();
+                        console.log(visitorName);
+
+                        $.ajax({
+                            url:'http://localhost:3000/signup',
+                            type : 'POST',
+                            data : {
+                                visitorName : visitorName,
+                                visitorEmail : visitorEmail,
+                                visitorPassword : visitorPassword,
+                                AccessToken : AccessToken,
+                                RefreshToken : RefreshToken,
+                                userSeqNo : userSeqNo
+                            },
+                            success:function(data){
+                                if(data =='1'){
+                                    alert('signup success!!!!!')
+                                    window.location.href='/login';
+                                }
+                                else{
+                                    alert('signup fail.....');
+                                }
+                            }
+                        })
+                    })
+                </script>
+    </body>
+</html>
