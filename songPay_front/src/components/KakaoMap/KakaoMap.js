@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 class KakaoMap extends Component {
   componentDidMount() {
+    console.log(process.env.REACT_APP_KAKAO_MAP_KEY);
     const script = document.createElement('script');
     script.async = true;
     script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.REACT_APP_KAKAO_MAP_KEY}&autoload=false`;
