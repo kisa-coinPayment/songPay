@@ -15,7 +15,6 @@ import Tooltip from '@material-ui/core/Tooltip';
 import { Apps, CloudDownload } from '@material-ui/icons';
 
 // core components
-import CustomDropdown from 'components/CustomDropdown/CustomDropdown.js';
 import Button from 'components/CustomButtons/Button.js';
 
 import styles from 'assets/jss/material-kit-react/components/headerLinksStyle.js';
@@ -27,32 +26,31 @@ export default function HeaderLinks(props) {
   return (
     <List className={classes.list}>
       <ListItem className={classes.listItem}>
-        <Link to={'/landing-page'} className={classes.link}>
-          <Button color='transparent' className={classes.navLink}>
-            서비스소개
-          </Button>
-        </Link>
+        <Button
+          href='landing-page'
+          color='transparent'
+          className={classes.Link}
+        >
+          쏭페이
+        </Button>
       </ListItem>
       <ListItem className={classes.listItem}>
-        <Link to={'/landing-page'} className={classes.link}>
-          <Button color='transparent' className={classes.navLink}>
-            매장찾기
-          </Button>
-        </Link>
+        <Button
+          href='qrcode-page'
+          color='transparent'
+          className={classes.navLink}
+        >
+          QR코드
+        </Button>
       </ListItem>
       <ListItem className={classes.listItem}>
-        <Link to={'/qrcode-page'} className={classes.link}>
-          <Button color='transparent' className={classes.navLink}>
-            QR코드
-          </Button>
-        </Link>
-      </ListItem>
-      <ListItem className={classes.listItem}>
-        <Link to={'/mypage-page'} className={classes.link}>
-          <Button color='transparent' className={classes.navLink}>
-            MYPAGE
-          </Button>
-        </Link>
+        <Button
+          href='mypage-page'
+          color='transparent'
+          className={classes.navLink}
+        >
+          MYPAGE
+        </Button>
       </ListItem>
     </List>
   );

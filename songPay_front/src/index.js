@@ -13,7 +13,7 @@ import LoginPage from 'views/LoginPage/LoginPage.js';
 import AuthPage from 'views/AuthPage/AuthPage';
 import QrcodePage from 'views/QrcodePage/QrcodePage';
 import MypagePage from 'views/MypagePage/MypagePage';
-import MyroomPage from 'views/MyroomPage/MyroomPage';
+import TestPage from 'views/TestPage/TestPage';
 
 var hist = createBrowserHistory();
 
@@ -23,11 +23,12 @@ ReactDOM.render(
       <Route path='/landing-page' component={LandingPage} />
       <Route path='/profile-page' component={ProfilePage} />
       <Route path='/login-page' component={LoginPage} />
-      <Route path='/auth-page' component={AuthPage} />
       <Route path='/qrcode-page' component={QrcodePage} />
       <Route path='/mypage-page' component={MypagePage} />
-      <Route path='/myroom-page' component={MyroomPage} />
-      <Route path='/' component={Components} />
+      <Route path='/auth-page' component={AuthPage} />
+      <Route path='/test-page' component={TestPage} />
+      <Route path='/' component={LandingPage} />
+      <Route path='/components' component={Components} />
     </Switch>
   </Router>,
   document.getElementById('root')

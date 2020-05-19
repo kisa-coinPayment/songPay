@@ -128,7 +128,7 @@ export default function LoginPage(props) {
                     />
                   </CardBody>
                   <CardFooter className={classes.cardFooter}>
-                    <Link to={'/'} className={classes.link}>
+                    <Link to={'/Landing-page'} className={classes.link}>
                       <Button round color='primary' size='lg'>
                         로그인
                       </Button>

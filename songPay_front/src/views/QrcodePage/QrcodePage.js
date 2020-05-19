@@ -20,6 +20,9 @@ import Parallax from 'components/Parallax/Parallax.js';
 // import TeamSection from '../LandingPage/Sections/TeamSection.js';
 // import WorkSection from '../LandingPage/Sections/WorkSection.js';
 
+//QR Reader
+import QrReader from 'react-qr-reader';
+
 import styles from 'assets/jss/material-kit-react/views/landingPage.js';
 
 const dashboardRoutes = [];
@@ -29,6 +32,18 @@ const useStyles = makeStyles(styles);
 export default function QrcodePage(props) {
   const classes = useStyles();
   const { ...rest } = props;
+
+  const handleScan = (data) => {
+    if (data) {
+      console.log(data);
+      if (data === '?????') {
+      }
+    }
+  };
+  const handleError = (err) => {
+    console.error(err);
+  };
+
   return (
     <div>
       <Header
@@ -47,10 +62,12 @@ export default function QrcodePage(props) {
         <div className={classes.container}>
           <GridContainer>
             <GridItem xs={12} sm={12} md={6}>
-              <h1 className={classes.title}>Song PAY</h1>
-              <hr />
-              <h4>QR코드 페이지</h4>
-              <br />
+              <QrReader
+                delay={300}
+                onError={handleError}
+                onScan={handleScan}
+                style={{ width: '100%' }}
+              />
             </GridItem>
           </GridContainer>
         </div>

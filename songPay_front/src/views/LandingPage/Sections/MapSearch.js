@@ -10,14 +10,17 @@ import Fingerprint from '@material-ui/icons/Fingerprint';
 import GridContainer from 'components/Grid/GridContainer.js';
 import GridItem from 'components/Grid/GridItem.js';
 import InfoArea from 'components/InfoArea/InfoArea.js';
+import KakaoMap from '../../../components/KakaoMap/KakaoMap';
 
 import styles from 'assets/jss/material-kit-react/views/landingPageSections/productStyle.js';
-import { isConstructorDeclaration } from 'typescript';
+import SimpleSelect from './../../../components/Select/SimpleSelect';
 
 const useStyles = makeStyles(styles);
 
-export default function ProductSection() {
+export default function MapSearch() {
   const classes = useStyles();
+  const options = ['one', 'two', 'three'];
+  const defaultOption = options[0];
   return (
     <div className={classes.section}>
       <GridContainer justify='center'>
@@ -26,6 +29,8 @@ export default function ProductSection() {
           <h5 className={classes.description}>
             QR결제가 가능한 매장을 만나보세요!
           </h5>
+          <SimpleSelect />
+          <KakaoMap />
         </GridItem>
       </GridContainer>
       <div>
