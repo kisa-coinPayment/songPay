@@ -15,18 +15,18 @@ import Button from 'components/CustomButtons/Button.js';
 import HeaderLinks from 'components/Header/HeaderLinks.js';
 import Parallax from 'components/Parallax/Parallax.js';
 
-import styles from 'assets/jss/material-kit-react/views/landingPage.js';
+// // Sections for this page
+// import ProductSection from '../LandingPage/Sections/ProductSection';
+// import TeamSection from '../LandingPage/Sections/TeamSection.js';
+// import WorkSection from '../LandingPage/Sections/WorkSection.js';
 
-// Sections for this page
-import ProductSection from './Sections/ProductSection.js';
-import TeamSection from './Sections/TeamSection.js';
-import WorkSection from './Sections/WorkSection.js';
+import styles from 'assets/jss/material-kit-react/views/landingPage.js';
 
 const dashboardRoutes = [];
 
 const useStyles = makeStyles(styles);
 
-export default function LandingPage(props) {
+export default function QrcodePage(props) {
   const classes = useStyles();
   const { ...rest } = props;
   return (
@@ -49,14 +49,7 @@ export default function LandingPage(props) {
             <GridItem xs={12} sm={12} md={6}>
               <h1 className={classes.title}>Song PAY</h1>
               <hr />
-              <h3>
-                {"'"}쏭페이{"'"}는
-              </h3>
-              <h4>
-                QR코드를 통한 코인노래방 결제 서비스로,
-                <br />
-                일명 {"'"}코노{"'"}문화를 선도하고자 합니다.
-              </h4>
+              <h4>QR코드 페이지</h4>
               <br />
             </GridItem>
           </GridContainer>
@@ -64,9 +57,9 @@ export default function LandingPage(props) {
       </Parallax>
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div className={classes.container}>
-          <ProductSection />
+          {/* <ProductSection />
           <TeamSection />
-          <WorkSection />
+          <WorkSection /> */}
         </div>
       </div>
       <Footer />

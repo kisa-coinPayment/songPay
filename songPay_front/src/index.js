@@ -11,6 +11,7 @@ import LandingPage from 'views/LandingPage/LandingPage.js';
 import ProfilePage from 'views/ProfilePage/ProfilePage.js';
 import LoginPage from 'views/LoginPage/LoginPage.js';
 import AuthPage from 'views/AuthPage/AuthPage';
+import QrcodePage from 'views/QrcodePage/QrcodePage';
 
 var hist = createBrowserHistory();
 
@@ -21,6 +22,7 @@ ReactDOM.render(
       <Route path='/profile-page' component={ProfilePage} />
       <Route path='/login-page' component={LoginPage} />
       <Route path='/auth-page' component={AuthPage} />
+      <Route path='/qrcode-page' component={QrcodePage} />
       <Route path='/' component={Components} />
     </Switch>
   </Router>,

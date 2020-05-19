@@ -27,43 +27,40 @@ export default function HeaderLinks(props) {
   return (
     <List className={classes.list}>
       <ListItem className={classes.listItem}>
-        <Button href='#' color='transparent' className={classes.navLink}>
-          서비스소개
-        </Button>
-        {/* <CustomDropdown
-          noLiPadding
-          buttonText="Components"
-          buttonProps={{
-            className: classes.navLink,
-            color: "transparent"
-          }}
-          buttonIcon={Apps}
-          dropdownList={[
-            <Link to="/" className={classes.dropdownLink}>
-              All components
-            </Link>,
-            <a
-              href="https://creativetimofficial.github.io/material-kit-react/#/documentation?ref=mkr-navbar"
-              target="_blank"
-              className={classes.dropdownLink}
-            >
-              Documentation
-            </a>
-          ]}
-        /> */}
+        <Link
+          to={'/landing-page'}
+          className={classes.link}
+          style={{ color: '#FFF' }}
+        >
+          <Button color='transparent' className={classes.navLink}>
+            서비스소개
+          </Button>
+        </Link>
       </ListItem>
       <ListItem className={classes.listItem}>
-        <Button href='#' color='transparent' className={classes.navLink}>
-          매장찾기
-        </Button>
+        <Link
+          to={'/landing-page'}
+          className={classes.link}
+          style={{ color: '#FFF' }}
+        >
+          <Button color='transparent' className={classes.navLink}>
+            매장찾기
+          </Button>
+        </Link>
       </ListItem>
       <ListItem className={classes.listItem}>
-        <Button href='#' color='transparent' className={classes.navLink}>
-          QR코드
-        </Button>
+        <Link
+          to={'/qrcode-page'}
+          className={classes.link}
+          style={{ color: '#FFF' }}
+        >
+          <Button color='transparent' className={classes.navLink}>
+            QR코드
+          </Button>
+        </Link>
       </ListItem>
       <ListItem className={classes.listItem}>
-        <Button href='#' color='transparent' className={classes.navLink}>
+        <Button color='transparent' className={classes.navLink}>
           MYPAGE
         </Button>
       </ListItem>
