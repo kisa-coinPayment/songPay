@@ -27,42 +27,32 @@ export default function HeaderLinks(props) {
   return (
     <List className={classes.list}>
       <ListItem className={classes.listItem}>
-        <Link
-          to={'/landing-page'}
-          className={classes.link}
-          style={{ color: '#FFF' }}
-        >
+        <Link to={'/landing-page'} className={classes.link}>
           <Button color='transparent' className={classes.navLink}>
             서비스소개
           </Button>
         </Link>
       </ListItem>
       <ListItem className={classes.listItem}>
-        <Link
-          to={'/landing-page'}
-          className={classes.link}
-          style={{ color: '#FFF' }}
-        >
+        <Link to={'/landing-page'} className={classes.link}>
           <Button color='transparent' className={classes.navLink}>
             매장찾기
           </Button>
         </Link>
       </ListItem>
       <ListItem className={classes.listItem}>
-        <Link
-          to={'/qrcode-page'}
-          className={classes.link}
-          style={{ color: '#FFF' }}
-        >
+        <Link to={'/qrcode-page'} className={classes.link}>
           <Button color='transparent' className={classes.navLink}>
             QR코드
           </Button>
         </Link>
       </ListItem>
       <ListItem className={classes.listItem}>
-        <Button color='transparent' className={classes.navLink}>
-          MYPAGE
-        </Button>
+        <Link to={'/mypage-page'} className={classes.link}>
+          <Button color='transparent' className={classes.navLink}>
+            MYPAGE
+          </Button>
+        </Link>
       </ListItem>
     </List>
   );
