@@ -3,6 +3,7 @@ const app = express()
 const path = require('path')
 var jwt = require('jsonwebtoken')
 var request = require('request')
+var auth=require('./lib/auth')
 var mysql = require('mysql')
 
 app.set('views', path.join(__dirname, 'views')); //ejs의 view파일이 어디에 있는지 알려줌
@@ -47,8 +48,8 @@ app.get('/deposit', function(req, res){
     res.render('deposit');
 })
 
-app.get('/withdraw', function(req, res){
-    res.render('withdraw');
+app.get('/main', function(req, res){
+    res.render('main');
 })
 
 // service start!!!!!!!!!!!!!!!
@@ -121,5 +122,44 @@ app.post('/login', function(req, res){
     })
 })
 
+app.post('/list', auth, function(req, res){
+    //계좌 리스트
+    var visitorId = req.decoded.visitorId; //token에서 분석해서 가져오기 <decoded>
+
+    var sql = "SELECT * FROM innodb.Visitor WHERE visitorid = ?"
+    connection.query(sql, [visitorId], function(err, result){
+        if(err){
+            console.error(err);
+            throw err
+        }
+        else{
+            console.log(result);
+    var option = {
+        method: "GET",
+        url : "https://testapi.openbanking.or.kr/v2.0/user/me",
+        headers : {
+            Authorization : 'Bearer' + result[0].accesstoken
+            // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxMTAwMDM0ODU1Iiwic2NvcGUiOlsiaW5xdWlyeSIsImxvZ2luIiwidHJhbnNmZXIiXSwiaXNzIjoiaHR0cHM6Ly93d3cub3BlbmJhbmtpbmcub3Iua3IiLCJleHAiOjE1OTcxMzExMjQsImp0aSI6ImE2ZTQ3YTE4LTNmNDYtNDUwNS05ZTY4LWUzNjM0NWM3NGVkNiJ9.mG7SJK8xwm_VUB9OSNYkJDx0yOZrx5gZaxzppHBSVg4'
+        },
+        qs:{
+            user_seq_no : result[0].userseqno
+        }
+    }
+    request(option, function(err, response, body){
+        if(err){
+            console.error(err);
+            throw err;
+        }
+        else {
+            var accessRequestResult = JSON.parse(body);
+            console.log(accessRequestResult);
+            res.json(accessRequestResult) // render 안해
+
+        }
+    })
+}
+})
+
+})
 
 app.listen(3000);
