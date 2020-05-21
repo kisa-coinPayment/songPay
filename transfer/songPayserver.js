@@ -318,7 +318,7 @@ app.post('/withdraw', function(req, res){
     var profit = req.body.profit
     console.log(profit);
 
-    var sql2 = "INSERT INTO innodb.Profit(date, profit, clientid) VALUES (curdate(), ?, 1)"
+    var sql2 = "INSERT INTO innodb.Profit(date, profit, clientid, flag) VALUES (curdate(), ?, 1, 0)"
   
   
     connection.query(sql2, [profit] ,function(err, result){
