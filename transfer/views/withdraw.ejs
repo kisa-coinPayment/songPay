@@ -13,6 +13,8 @@
         <button id="submitBtn">제출</button>
       </form>
 
+      
+
     <!-- JQuery library file. requared all pages -->
 	<script src="js/jquery-3.2.1.min.js"></script>
 
@@ -33,6 +35,7 @@
             success:function(data){
                 if(data =='1'){
                     alert('success!!!!!')
+                    window.location.href='/result?profit='+profit;
                 }
                 else{
                     alert('fail.....');

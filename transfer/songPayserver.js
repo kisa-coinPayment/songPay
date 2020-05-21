@@ -56,6 +56,14 @@ app.get('/main', function(req, res){
     res.render('main');
 })
 
+app.get('/roomstatus', function(req, res){
+    res.render('roomstatus');
+})
+
+app.get('/result', function(req, res){
+    res.render('result')
+})
+
 // service start!!!!!!!!!!!!!!!
 app.post('/signup', function(req, res){
     //data req get db store
@@ -251,43 +259,65 @@ app.post('/list', auth, function(req, res){
 //                     "Content-Type" : "application/json"
 //                 },
 //                 json : {
-//                     "bank_tran_id": transId,
+//                     "bank_tran_id": "T991629130U000000004", 
 //                     "cntr_account_type": "N",
-//                     "cntr_account_num": "7832932596",
-//                     "dps_print_content": "쇼핑몰환불",
-//                     "fintech_use_num": fin_use_num,
-//                     "wd_print_content": "오픈뱅킹출금",
+//                     "cntr_account_num": "7259011638", 
+//                     "dps_print_content": "코인노래방 충전", 
+//                     "fintech_use_num": "199162913057883975745276", 
+//                     "wd_print_content": "코인노래방",
 //                     "tran_amt": "1000",
-//                     "tran_dtime": "20200424131111",
-//                     "req_client_name": "홍길동",
-//                     "req_client_fintech_use_num" : "199159919057870971744807",
-//                     "req_client_num": "HONGGILDONG1234",
-//                     "transfer_purpose": "TR",
-//                     "recv_client_name": "진상언",
-//                     "recv_client_bank_code": "097",
-//                     "recv_client_account_num": "7832932596"
-//                 }
-//             }
-//             request(option, function(err, response, body){
-//                 if(err){
-//                     console.error(err);
-//                     throw err;
-//                 }
-//                 else {
-//                     console.log(body);
-//                     if(body.rsp_code == 'A0000'){
-//                         res.json(1)
+//                     "tran_dtime": "20200421104220", 
+//                     "req_client_name": "김민지",
+//                     "req_client_bank_code": "097", 
+//                     "req_client_account_num": "0193294433",
+//                     "req_client_num":"HONGGILDONG1234",
+//                     "transfer_purpose":"TR",
+//                     "recv_client_name": "노래방업주1", 
+//                     "recv_client_bank_code": "097", 
+//                     "recv_client_account_num": "7259011638"
 //                     }
-//                 }
-//             })
-//         }
+//             }
+//             console.log(option.json.tran_amt);
+//             request(option, function(err, response, body){
+//                 // 디비에 들어갈 바디 정보 변수 선언 
+//                 //var amount = req.body.amount
+                
+//                 //var tran_dtime = req.body.trand_dtime;
+//                 var tran_amt = req.body.tran_amt;
+                
+//                 var sql2 = "INSERT INTO innodb.Profit(date, profit, clientid) VALUES (curdate(), ?, 1)"
+//                 if(err){
+//                       console.error(err);
+//                       throw err;
+//                   }
+//                   else {
+//                       console.log(body);
+//                       if(body.rsp_code == 'A0000'){
+//                           res.json(1)
+//                           //sql 값 디비에 저장 
+//                           connection.query(sql2, [tran_amt] ,function(err, result){
+                             
+//                             if(err){
+//                               console.error(err);
+//                               res.json(0);
+//                               throw err;
+//                             }
+//                             else {
+//                               res.json(1);
+//                             }
+//                           })
+//                       }
+//                   }
+//               })
+//           }
+//       })
 //     })
-// })
 
 app.post('/withdraw', function(req, res){
   
     var profit = req.body.profit
     console.log(profit);
+
     var sql2 = "INSERT INTO innodb.Profit(date, profit, clientid) VALUES (curdate(), ?, 1)"
   
   
@@ -305,5 +335,26 @@ app.post('/withdraw', function(req, res){
     })
   })
   
+  app.post('/result', function(req, res){
+  
+    var profitId = req.body.profitId
+    console.log(profit);
+
+    var sql2 = "select profit from profit where profitid = ?"
+  
+  
+    connection.query(sql2, [profitId] ,function(err, result){
+                           
+      if(err){
+        console.error(err);
+        res.json(0);
+        throw err;
+      }
+      else {
+        res.json(1);
+        console.log("good")
+      }
+    })
+  })
 
 app.listen(3000);

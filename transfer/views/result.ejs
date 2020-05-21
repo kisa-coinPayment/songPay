@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <body>
+<h1>남은 곡 수</h1>
+<script>
+function getQueryStringObject() {
+    var a = window.location.search.substr(1).split('&');
+    if (a == "") return {};
+    var b = {};
+    for (var i = 0; i < a.length; ++i) {
+        var p = a[i].split('=', 2);
+        if (p.length == 1)
+            b[p[0]] = "";
+        else
+            b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
+    }
+    return b;
+	}
+    var qs = getQueryStringObject();
+    var profit = qs.profit;
+    //var jwtToken = sessionStorage.getItem('jwtToken');
+
+    console.log(profit);
+    
+function remain(money){
+    var coin;
+
+    coin = money / 250
+    return coin
+}
+
+document.write(remain(profit));
+
+</script>
+
+
+    </body>
+</html>
