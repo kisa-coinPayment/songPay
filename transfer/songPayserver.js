@@ -48,6 +48,10 @@ app.get('/deposit', function(req, res){
     res.render('deposit');
 })
 
+app.get('/withdraw', function(req, res){
+    res.render('withdraw');
+})
+
 app.get('/main', function(req, res){
     res.render('main');
 })
@@ -161,5 +165,145 @@ app.post('/list', auth, function(req, res){
 })
 
 })
+
+// app.post('/deposit', auth, function (req, res) {
+//     var visitorId = req.decoded.visitorId;
+//     var fin_use_num = req.body.fin_use_num;
+
+//     var countnum = Math.floor(Math.random() * 1000000000) + 1;
+//     var transId = "T991599190U" + countnum; //이용기과번호 본인것 입력
+
+//     var sql = "SELECT * FROM Visitor WHERE visitorid = ?"
+//     connection.query(sql,[visitorId], function(err , result){
+//         if(err){
+//             console.error(err);
+//             throw err
+//         }
+//         else {
+//             console.log(result);
+//             var option = {
+//                 method : "POST",
+//                 url : " https://testapi.openbanking.or.kr/v2.0/transfer/deposit/fin_num",
+//                 headers : {
+//                     Authorization : 'Bearer ' + result[0].accesstoken,
+//                     "Content-Type" : "application/json"
+//                 },
+//                 json : {
+//                     "cntr_account_type":"N", 
+//                     "cntr_account_num":"0193294433", 
+//                     "wd_pass_phrase":"NONE", 
+//                     "wd_print_content":"환불금액", 
+//                     "name_check_option":"on",
+//                     "tran_dtime":"20200512101921",
+//                     "req_cnt":"1",
+//                     "req_list":[
+//                         {
+//                         "tran_no": "1",
+//                         "bank_tran_id":transId,
+//                         "fintech_use_num":fin_use_num,
+//                         "print_content":"오픈서비스캐시백",
+//                         "tran_amt":"45000",
+//                         "req_client_name":"김민지",
+//                         "req_client_bank_code":"097",
+//                         "req_client_account_num":"0193294433",
+//                         "req_client_num":"HONGGILDONG1234",
+//                         "transfer_purpose":"TR"
+//                         }
+//                     ] 
+//                 }
+//             }
+//             request(option, function(err, response, body){
+//                 if(err){
+//                     console.error(err);
+//                     throw err;
+//                 }
+//                 else {
+//                     console.log(body);
+//                     if(body.rsp_code == 'A0000'){
+//                         res.json(1)
+//                     }
+//                 }
+//             })
+//         }
+//     })
+// })
+
+// app.post('/withdraw', auth, function (req, res) {
+//     var visitorId = req.decoded.visitorId;
+//     var fin_use_num = req.body.fin_use_num;
+
+//     var countnum = Math.floor(Math.random() * 1000000000) + 1;
+//     var transId = "T991629130U" + countnum; //이용기과번호 본인것 입력
+
+//     var sql = "SELECT * FROM innob.Visitor WHERE visitorid = ?"
+//     connection.query(sql,[visitorId], function(err , result){
+//         if(err){
+//             console.error(err);
+//             throw err
+//         }
+//         else {
+//             console.log(result);
+//             var option = {
+//                 method : "POST",
+//                 url : "https://testapi.openbanking.or.kr/v2.0/transfer/withdraw/fin_num",
+//                 headers : {
+//                     Authorization : 'Bearer ' + result[0].accesstoken,
+//                     "Content-Type" : "application/json"
+//                 },
+//                 json : {
+//                     "bank_tran_id": transId,
+//                     "cntr_account_type": "N",
+//                     "cntr_account_num": "7832932596",
+//                     "dps_print_content": "쇼핑몰환불",
+//                     "fintech_use_num": fin_use_num,
+//                     "wd_print_content": "오픈뱅킹출금",
+//                     "tran_amt": "1000",
+//                     "tran_dtime": "20200424131111",
+//                     "req_client_name": "홍길동",
+//                     "req_client_fintech_use_num" : "199159919057870971744807",
+//                     "req_client_num": "HONGGILDONG1234",
+//                     "transfer_purpose": "TR",
+//                     "recv_client_name": "진상언",
+//                     "recv_client_bank_code": "097",
+//                     "recv_client_account_num": "7832932596"
+//                 }
+//             }
+//             request(option, function(err, response, body){
+//                 if(err){
+//                     console.error(err);
+//                     throw err;
+//                 }
+//                 else {
+//                     console.log(body);
+//                     if(body.rsp_code == 'A0000'){
+//                         res.json(1)
+//                     }
+//                 }
+//             })
+//         }
+//     })
+// })
+
+app.post('/withdraw', function(req, res){
+  
+    var profit = req.body.profit
+    console.log(profit);
+    var sql2 = "INSERT INTO innodb.Profit(date, profit, clientid) VALUES (curdate(), ?, 1)"
+  
+  
+    connection.query(sql2, [profit] ,function(err, result){
+                           
+      if(err){
+        console.error(err);
+        res.json(0);
+        throw err;
+      }
+      else {
+        res.json(1);
+        console.log("good")
+      }
+    })
+  })
+  
 
 app.listen(3000);
