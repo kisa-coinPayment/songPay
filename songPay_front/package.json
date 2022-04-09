@@ -12,7 +12,7 @@
     "dotenv": "^8.2.0",
     "history": "4.9.0",
     "kakao-map-react": "^1.2.0",
-    "moment": "2.24.0",
+    "moment": "2.29.2",
     "node-sass": "^4.14.1",
     "nouislider": "14.0.2",
     "prop-types": "15.7.2",
